@@ -18,62 +18,73 @@ class _CadastroScreenState extends State<CadastroScreen> {
       appBar: AppBar(
         title: Text('Cadastro'),
       ),
-      body: Center(
-        child: Container(
-          width: MediaQuery.of(context).size.width * 0.6, // Definindo a largura do container como 80% da largura da tela
-          padding: EdgeInsets.all(16.0),
-          decoration: BoxDecoration(
-            color: Colors.grey[200], // Definindo uma cor de fundo para o container
-            borderRadius: BorderRadius.circular(8.0), // Adicionando bordas arredondadas ao container
+      body: Stack(
+        children: <Widget>[
+          // Imagem de fundo
+          Image.asset(
+            'assets/register-bg.jpg', // Substitua 'background_image.jpg' pelo nome do seu arquivo de imagem
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Row(
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.6,
+              padding: EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200]?.withOpacity(0.8), // Definindo uma cor de fundo com opacidade
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Expanded(
-                    child: TextFormField(
-                      controller: _nomeController,
-                      decoration: InputDecoration(labelText: 'Nome'),
-                    ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: TextFormField(
+                          controller: _nomeController,
+                          decoration: InputDecoration(labelText: 'Nome'),
+                        ),
+                      ),
+                      SizedBox(width: 8.0),
+                      Expanded(
+                        child: TextFormField(
+                          controller: _sobrenomeController,
+                          decoration: InputDecoration(labelText: 'Sobrenome'),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 8.0), // Adicionando um espaço entre os campos
-                  Expanded(
-                    child: TextFormField(
-                      controller: _sobrenomeController,
-                      decoration: InputDecoration(labelText: 'Sobrenome'),
-                    ),
+                  SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(labelText: 'Email'),
+                  ),
+                  SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _senhaController,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'Senha'),
+                  ),
+                  SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _repitasenhaController,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'Repita a senha'),
+                  ),
+                  SizedBox(height: 64.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      _cadastrar();
+                    },
+                    child: Text('Cadastrar'),
                   ),
                 ],
               ),
-              SizedBox(height: 16.0),
-              TextFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
-              SizedBox(height: 16.0),
-              TextFormField(
-                controller: _senhaController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Senha'),
-              ),
-              SizedBox(height: 16.0),
-              TextFormField(
-                controller: _repitasenhaController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Repita a senha'),
-              ),
-              SizedBox(height: 64.0),
-              ElevatedButton(
-                onPressed: () {
-                  _cadastrar();
-                },
-                child: Text('Cadastrar'),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
