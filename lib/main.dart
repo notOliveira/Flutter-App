@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'primeira_tela.dart';
 import 'segunda_tela.dart';
+import 'register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/primeira_tela": (context) => Primeira(),
         "/segunda_tela": (context) => Segunda("a barra de pesquisa"),
+        "/register": (context) => CadastroScreen()
       },
       title: 'Flutter Demo',
       theme: ThemeData(
